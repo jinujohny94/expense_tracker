@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% extends "firstapp/base.html"%}
+{% block body_block %}
+        <h1>Employee Details</h1>
+        <h2>Here are the employees</h2>
+        {% if emp_records %}
+            <table>
+                <thead>
+                    <th>Emp ID</th>
+                    <th>Name</th>
+                    <th>Salary</th>
+                    <th>Company</th>
+                </thead>
+                {% for emp in emp_records %}
+                    <tr>
+                        <td>{{ emp.emp_id }}</td>
+                        <td>{{ emp.name }}</td>
+                        <td>{{ emp.salary }}</td>
+                        <td>{{ emp.employer_name }} </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>No record</p>
+        {% endif %}
+        <a href="{% url 'firstapp:signemp' %}">ADDEMP</a>
+{% endblock %}
