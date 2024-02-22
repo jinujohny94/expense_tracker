@@ -9,6 +9,9 @@ jobs :
     runs-on : ubuntu-latest
 
     steps :
+      - name : Check out code
+        uses: actions/checkout@v4
+    
       - name : Run something
         uses : ./.github/actions/test123
         
