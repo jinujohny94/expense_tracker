@@ -1,14 +1,14 @@
-name: Test
+name : Test
 
-on: 
-  workflow_dispatch:
+on : 
+  workflow_dispatch :
 
 
-jobs:
-  test_job:
-    runs-on: ubuntu-latest
+jobs :
+  test_job :
+    runs-on : ubuntu-latest
 
-    steps:
-      -name: Run something
-        uses: ./.github/actions/test123
+    steps :
+      - name : Run something
+        uses : ./.github/actions/test123
         
