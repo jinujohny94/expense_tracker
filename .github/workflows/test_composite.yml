@@ -9,5 +9,5 @@ jobs :
       - name: checkout repo
         uses: actions/checkout@v2
       - name: composite
-        uses: ./github/actions/test123
+        uses: ./.github/actions/test123
         
