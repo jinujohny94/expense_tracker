@@ -8,5 +8,5 @@ runs:
 
     - name : Run UI tests
       run : |
-        echo "Hello World"
+        echo "Hello World "
         
