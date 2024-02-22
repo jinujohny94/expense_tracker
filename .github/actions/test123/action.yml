@@ -6,4 +6,5 @@ runs:
     - name : Run UI tests
       run : |
         echo "Hello World "
+      shell: bash
         
