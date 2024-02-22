@@ -3,10 +3,11 @@ name : Test
 on : 
   workflow_dispatch :
 jobs :
-  test_job :
-    runs-on : ubuntu-latest
-
-    steps :
-      - name : Run something
-        uses : ./.github/actions/test123
+  build: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v2
+      - name: composite
+        uses: jinujohny94/test123@v1
         
