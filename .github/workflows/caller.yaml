@@ -13,13 +13,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    #environment: test
+    environment: test
     steps:
       - name: demo workflow job
         run: echo This is a demo start workflow
       - name: Input 
         env:
-          TEST: ${{ vars.TEST }}
+          TEST: ${{ vars.VAR1 }}
         run: |
           echo "{\"INPUT1\":\"${{ inputs.input1 }}\", 
           \"INPUT2\":\"${{ inputs.input2 }}\",
