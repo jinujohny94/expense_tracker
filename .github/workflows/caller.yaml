@@ -21,7 +21,6 @@ jobs:
     needs: build
     uses: jinujohny94/reusable/.github/workflows/resuable_workflow.yaml@main
     with:
-      environment: test
       additional: "{\"INPUT1\":\"${{ inputs.input1 }}\", 
         \"INPUT2\":\"${{ inputs.input2 }}\",
         \"INPUT3\":\"${{ vars.VAR1 }}\",
