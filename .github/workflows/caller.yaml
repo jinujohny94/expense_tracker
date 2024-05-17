@@ -19,7 +19,7 @@ jobs:
 
   job1:
     needs: build
-    uses: jinujohny94/reusable/.github/workflows/resusable_workflow.yaml@main
+    uses: jinujohny94/reusable/.github/workflows/resuable_workflow.yaml@main
     environment: test
     with:
       additional: "{\"INPUT1\":\"${{ inputs.input1 }}\", 
