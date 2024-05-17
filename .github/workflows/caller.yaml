@@ -1,0 +1,32 @@
+name: Starter Workflow Demo
+
+on:
+  workflow_dispatch:
+    inputs:
+      input1:
+        type: string
+        description: "Input 1"
+      input2:
+        type: string
+        description: "Input 2"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: demo workflow job
+        run: echo This is a demo start workflow
+
+  job1:
+    needs: build
+    uses: jinujohny94/reusable/.github/workflows/resusable_workflow.yaml@main
+    environment: test
+    with:
+      additional: "{\"INPUT1\":\"${{ inputs.input1 }}\", 
+        \"INPUT2\":\"${{ inputs.input2 }}\",
+        \"INPUT3\":\"${{ vars.VAR1 }}\",
+        \"INPUT4\":\"${{ vars.VAR2 }}\"}"
+
+
+    
+    
