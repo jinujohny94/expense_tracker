@@ -14,19 +14,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     environment: test
+    outputs:
+      output1: ${{ steps.gather.outputs.VARS_JSON }}
     steps:
-      - name: demo workflow job
-        run: echo This is a demo start workflow
       - name: Input 
+        id: gather
         env:
           TEST: ${{ vars.VAR1 }}
           VARS_JSON: ${{ toJSON(vars) }}
-        run: |
-          echo "{\"INPUT1\":\"${{ inputs.input1 }}\", 
-          \"INPUT2\":\"${{ inputs.input2 }}\",
-          \"INPUT3\":\"${{ vars.VAR1 }}\",
-          \"INPUT4\":\"${{ vars.VAR2 }}\",
-          \"INPUT5\":\"${{ env.VARS_JSON }}\"}"
+        # run: |
+        #   echo "{\"INPUT1\":\"${{ inputs.input1 }}\", 
+        #   \"INPUT2\":\"${{ inputs.input2 }}\",
+        #   \"INPUT3\":\"${{ vars.VAR1 }}\",
+        #   \"INPUT4\":\"${{ vars.VAR2 }}\",
+        #   \"INPUT5\":\"${{ env.VARS_JSON }}\"}"
 
   job1:
     needs: build
@@ -35,7 +36,7 @@ jobs:
       additional: "{\"INPUT1\":\"${{ inputs.input1 }}\", 
         \"INPUT2\":\"${{ inputs.input2 }}\",
         \"INPUT3\":\"${{ vars.VAR1 }}\",
-        \"INPUT4\":\"${{ vars.VAR2 }}\"}"
+        \"INPUT4\":\"${{needs.build.outputs.output1}}\"}"
 
 
     
