@@ -9,30 +9,30 @@ on:
       input2:
         type: string
         description: "Input 2"
+      input3:
+        type: choice
+        description: "Environment"
+        options:
+          - test
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: test
+    environment: ${{ inputs.input3 }}
     outputs:
       output1: ${{ steps.gather.outputs.VARS_JSON }}
       output2: ${{ steps.gather.outputs.TEST }}
+      output3: ${{ steps.gather.outputs.ROLE }}
     steps:
       - name: Input 
         id: gather
-        # env:
-        #   TEST: ${{ vars.VAR1 }}
-        #   VARS_JSON:  ${{ vars.VAR2 }}
         run: |
-          # echo "{\"INPUT1\":\"${{ inputs.input1 }}\", 
-          # \"INPUT2\":\"${{ inputs.input2 }}\",
-          # \"INPUT3\":\"${{ vars.VAR1 }}\",
-          # \"INPUT4\":\"${{ vars.VAR2 }}\",
-          # \"INPUT5\":\"${{ env.VARS_JSON }}\"}"
-          echo "VARS_JSON= ${{ vars.VAR2 }}" >> "$GITHUB_OUTPUT"
-          echo "TEST= ${{ vars.VAR1 }}" >> "$GITHUB_OUTPUT"
           echo "Gather environment related inputs"
-          
+          echo "VARS_JSON=${{ vars.VAR2 }}" >> "$GITHUB_OUTPUT"
+          echo "TEST=${{ vars.VAR1 }}" >> "$GITHUB_OUTPUT"
+          if [ ${{ inputs.input3 }} == "interop" ];then
+            echo "ROLE=TST_ABP_${{ vars.VAR1 }}_FR" >> "$GITHUB_OUTPUT"
+          fi
 
   job1:
     needs: build
@@ -40,7 +40,9 @@ jobs:
     with:
       additional: "{\"INPUT1\":\"${{ inputs.input1 }}\", 
         \"INPUT2\":\"${{ inputs.input2 }}\",
-        \"INPUT4\":\"${{ needs.build.outputs.output1 }}\"
+        \"INPUT3\":\"${{ needs.build.outputs.output1 }}\",
+        \"INPUT4\":\"${{ needs.build.outputs.output2 }}\",
+        \"INPUT5\":\"${{ needs.build.outputs.output3 }}\"
         }"
 
 
