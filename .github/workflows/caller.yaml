@@ -28,6 +28,7 @@ jobs:
           \"INPUT3\":\"${{ vars.VAR1 }}\",
           \"INPUT4\":\"${{ vars.VAR2 }}\",
           \"INPUT5\":\"${{ env.VARS_JSON }}\"}"
+          echo "VARS_JSON=${{ toJSON(vars) }}" >> "$GITHUB_OUTPUT"
 
   job1:
     needs: build
@@ -35,8 +36,8 @@ jobs:
     with:
       additional: "{\"INPUT1\":\"${{ inputs.input1 }}\", 
         \"INPUT2\":\"${{ inputs.input2 }}\",
-        \"INPUT3\":\"${{ vars.VAR1 }}\",
-        \"INPUT4\":\"${{ needs.build.outputs.output1 }}\"}"
+        \"INPUT4\":\"${{ needs.build.outputs.output1 }}\"
+        }"
 
 
     
