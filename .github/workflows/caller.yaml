@@ -30,7 +30,7 @@ jobs:
           echo "Gather environment related inputs"
           echo "VARS_JSON=${{ vars.VAR2 }}" >> "$GITHUB_OUTPUT"
           echo "TEST=${{ vars.VAR1 }}" >> "$GITHUB_OUTPUT"
-          if [ ${{ inputs.input3 }} == "interop" ];then
+          if [ ${{ inputs.input3 }} == "test" ];then
             echo "ROLE=TST_ABP_${{ vars.VAR1 }}_FR" >> "$GITHUB_OUTPUT"
           fi
 
