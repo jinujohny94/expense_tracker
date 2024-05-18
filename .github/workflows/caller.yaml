@@ -36,7 +36,7 @@ jobs:
       additional: "{\"INPUT1\":\"${{ inputs.input1 }}\", 
         \"INPUT2\":\"${{ inputs.input2 }}\",
         \"INPUT3\":\"${{ vars.VAR1 }}\",
-        \"INPUT4\":\"${{needs.build.outputs.output1}}\"}"
+        \"INPUT4\":\"${{ needs.build.outputs.output1 }}\"}"
 
 
     
