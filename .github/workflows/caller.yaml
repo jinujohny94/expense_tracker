@@ -20,16 +20,17 @@ jobs:
     steps:
       - name: Input 
         id: gather
-        env:
-          TEST: ${{ vars.VAR1 }}
-          VARS_JSON:  ${{ vars.VAR2 }}
+        # env:
+        #   TEST: ${{ vars.VAR1 }}
+        #   VARS_JSON:  ${{ vars.VAR2 }}
         run: |
           # echo "{\"INPUT1\":\"${{ inputs.input1 }}\", 
           # \"INPUT2\":\"${{ inputs.input2 }}\",
           # \"INPUT3\":\"${{ vars.VAR1 }}\",
           # \"INPUT4\":\"${{ vars.VAR2 }}\",
           # \"INPUT5\":\"${{ env.VARS_JSON }}\"}"
-          # echo "VARS_JSON=${{ toJSON(vars) }}" >> "$GITHUB_OUTPUT"
+          echo "VARS_JSON= ${{ vars.VAR2 }}" >> "$GITHUB_OUTPUT"
+          echo "TEST= ${{ vars.VAR1 }}" >> "$GITHUB_OUTPUT"
           echo "Gather environment related inputs"
           
 
